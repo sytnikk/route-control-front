@@ -1,32 +1,52 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-main>
+      <v-container>
+        <h1>Управление маршрутами</h1>
+        <v-expansion-panels
+          v-model="panels"
+          multiple
+        >
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <h2>Маршруты</h2>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <Routes/>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <h2>Автомобили</h2>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <Cars/>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <Alerts/>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Cars from './components/cars/Cars'
+import Routes from './components/routes/Routes'
+import Alerts from './components/Alerts'
+
+export default {
+  name: 'App',
+
+  components: {
+    Routes,
+    Cars,
+    Alerts
+  },
+
+  data: () => ({
+    panels: [0, 1]
+  })
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>
